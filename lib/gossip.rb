@@ -2,13 +2,13 @@ class Gossip
 	attr_reader :author, :content
 
 	def initialize(author, content)
-	  @content = content
-	  @author = author
+		@content = content
+		@author = author
 	end
 
 	def save
 		CSV.open("db/gossip.csv","a") do |csv|
-		  csv << [@author, @content]
+			csv << [@author, @content]
 		end
 	end
 
@@ -21,4 +21,22 @@ class Gossip
 		return all_gosips
 	end
 
+	def remove
+		gossips = []
+		CSV.open("db/gossip.csv","a+") do |csv|
+			gossips = csv.read
+			gossips.each do |gossip|
+				if gossip == [self.author,self.content]
+					gossips.delete(gossip)
+					binding.pry
+					break
+				end	
+			end
+		end
+		CSV.open("db/gossip.csv","w+") do |csv|
+			gossips.each do |gossip|
+				csv << [gossip[0], gossip[1]]
+			end
+		end
+	end
 end

@@ -11,9 +11,18 @@ class View
 
 	def index_gossips(gossips)
 		gossips.each do |gossip|
-			puts gossip.author
-			puts gossip.content
 			puts
+			puts gossip.author + " : " + gossip.content
+		end
+		puts
+	end
+
+	def destroy_gossip(gossips)
+		prompt = TTY::Prompt.new
+		prompt.select("Choisis le potin que tu veux supprimer", cycle: true) do |menu|
+			gossips.size.times do |i|
+				menu.choice "#{gossips[i].author} : #{gossips[i].content}", -> { return gossips[i] }
+			end
 		end
 	end
 end

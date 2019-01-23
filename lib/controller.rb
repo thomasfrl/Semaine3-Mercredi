@@ -14,4 +14,10 @@ class Controller
 		@view.index_gossips(gossips)
 	end
 
+	def destroy_gossip
+		gossips = Gossip.all
+		gossip_to_destroy = @view.destroy_gossip(gossips)
+		gossip_to_destroy.remove
+	end
+
 end

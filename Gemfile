@@ -21,3 +21,5 @@
 		gem 'google_drive' 
 
 		gem 'launchy' 
+
+		gem 'tty-prompt'
