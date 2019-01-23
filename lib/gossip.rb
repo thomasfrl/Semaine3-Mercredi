@@ -28,7 +28,6 @@ class Gossip
 			gossips.each do |gossip|
 				if gossip == [self.author,self.content]
 					gossips.delete(gossip)
-					binding.pry
 					break
 				end	
 			end
